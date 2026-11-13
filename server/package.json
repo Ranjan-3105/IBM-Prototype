@@ -1,12 +1,14 @@
 {
-  "name": "server",
+  "name": "skillbridge-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "SkillBridge API — Express 5 + TypeScript + MongoDB",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "seed": "tsx src/scripts/seed.ts",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +31,12 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.6",
+    "mongodb-memory-server": "^11.3.0",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

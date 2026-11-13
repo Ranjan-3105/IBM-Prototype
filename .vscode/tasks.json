@@ -1,0 +1,40 @@
+{
+  // Terminal → Run Task… → "SkillBridge: start" runs the API and the client side by side.
+  // Uses the portable Node 22 in .tools/node22 (the pinned Vite 8 / Mongoose 9 need Node ≥ 20.19).
+  // Without it, use "SkillBridge: start (system Node)".
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "SkillBridge: API",
+      "type": "process",
+      "command": "${workspaceFolder}\\.tools\\node22\\node.exe",
+      "args": ["node_modules/tsx/dist/cli.mjs", "watch", "src/server.ts"],
+      "options": { "cwd": "${workspaceFolder}/server" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "panel": "dedicated", "reveal": "always", "group": "skillbridge" }
+    },
+    {
+      "label": "SkillBridge: client",
+      "type": "process",
+      "command": "${workspaceFolder}\\.tools\\node22\\node.exe",
+      "args": ["node_modules/vite/bin/vite.js"],
+      "options": { "cwd": "${workspaceFolder}/client" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "panel": "dedicated", "reveal": "always", "group": "skillbridge" }
+    },
+    {
+      "label": "SkillBridge: start",
+      "dependsOn": ["SkillBridge: API", "SkillBridge: client"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    },
+    {
+      "label": "SkillBridge: start (system Node)",
+      "type": "shell",
+      "command": "${workspaceFolder}\\start-skillbridge.bat",
+      "problemMatcher": []
+    }
+  ]
+}
